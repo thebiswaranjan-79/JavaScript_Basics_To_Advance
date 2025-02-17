@@ -5,13 +5,13 @@ class Product {
   description;
   rating;
 
- constructor(name, price, category, description, rating) {
+  constructor(name, price, category, description, rating) {
     this.name = name;
     this.price = price;
     this.category = category;
     this.description = description;
     this.rating = rating;
- }
+  }
 
   // These are the Member Functions
   addToCart() {
@@ -45,6 +45,36 @@ class Product {
         
 ``` */
 
-let iphone = new Product("Iphone 12", 80000, "Electronics", "Apple Iphone 12", 4.5);
+let iphone = new Product(
+  "Iphone 12",
+  80000,
+  "Electronics",
+  "Apple Iphone 12",
+  4.5
+);
 iphone.addToCart();
 console.log(iphone);
+
+// It has an exception, this keyword will not refer to the call site if used inside an arrow function
+// In case of arrow functions, this is resolved using lexical scoping.
+// In this code, this is present inside the arrow function, hence we will resolve it lexically.
+
+let obj = {
+  x: 10,
+  y: 20,
+  fn: function () {
+    const arrow = () => {
+      console.log(this.x, this.y);
+    };
+    arrow();
+  },
+};
+
+obj.fn();
+
+// 1. Is this defined in the scope of arrow function ? No
+// 2. We go one scope up, i.e inside function fn.
+// 3. Is this defined inside fn? yes, because fn is a normal function, we have a definition of
+// this inside it which is the call site
+// 4. Who is the call site ? Obj object which is responsible to trigger fn is the call site
+// 5. Hence this refers to obj object and when we call arrow function we get output as 10 20 .
