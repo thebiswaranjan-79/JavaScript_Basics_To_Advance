@@ -5,8 +5,10 @@ class Product {
     category;
     description;
     rating;
-    
 
+    constructor(){
+        console.log("Product object created");
+    }
     // These are the Member Functions
     addToCart(){
         console.log("Product added to cart");
